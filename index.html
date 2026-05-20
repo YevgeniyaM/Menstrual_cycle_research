@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Менструальний цикл: що відбувається всередині і як себе підтримати</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #f0ece6;
+    --text: #1c1814;
+    --muted: #7a6f6a;
+    --accent: #9b4f6e;
+    --accent-2: #c4855a;
+    --accent-light: #f0dde6;
+    --card-bg: #f8f4f0;
+    --border: #ddd6cf;
+    --highlight: #fdf5f8;
+
+    --phase1: #c0392b;
+    --phase2: #e67e22;
+    --phase3: #27ae60;
+    --phase4: #8e44ad;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.78;
+  }
+
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--accent);
+    z-index: 999;
+    transition: width 0.1s linear;
+  }
+
+  header {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .read-time {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 52px 0 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-tag {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 46px);
+    line-height: 1.18;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 620px;
+    line-height: 1.7;
+  }
+
+  /* Cycle visual */
+  .cycle-visual {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 40px 0 20px;
+  }
+
+  .phase-pill {
+    border-radius: 6px;
+    padding: 16px 14px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-pill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .phase-pill .days {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+
+  .phase-pill .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .ph1 { background: var(--phase1); }
+  .ph2 { background: var(--phase2); }
+  .ph3 { background: var(--phase3); }
+  .ph4 { background: var(--phase4); }
+
+  /* Article */
+  article { padding: 48px 0 80px; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 10px;
+    margin-top: 60px;
+    display: block;
+  }
+
+  .section-label:first-child { margin-top: 0; }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 27px;
+    font-weight: 600;
+    margin: 8px 0 20px;
+    letter-spacing: 0.01em;
+  }
+
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+    color: var(--text);
+  }
+
+  p { margin-bottom: 20px; }
+  p:last-child { margin-bottom: 0; }
+
+  strong { font-weight: 600; }
+
+  em {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+  }
+
+  a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  ol, ul { margin: 20px 0 20px 24px; }
+  li { margin-bottom: 12px; line-height: 1.7; }
+
+  /* Phase block */
+  .phase-block {
+    border-radius: 6px;
+    padding: 32px 36px;
+    margin: 36px 0;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-block::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+  }
+
+  .phase-block.menstrual { background: #fdf5f5; }
+  .phase-block.menstrual::before { background: var(--phase1); }
+
+  .phase-block.follicular { background: #fef8f2; }
+  .phase-block.follicular::before { background: var(--phase2); }
+
+  .phase-block.ovulation { background: #f3fbf5; }
+  .phase-block.ovulation::before { background: var(--phase3); }
+
+  .phase-block.luteal { background: #f8f4fc; }
+  .phase-block.luteal::before { background: var(--phase4); }
+
+  .phase-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .phase-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .phase-days {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .hormone-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .hormone-tag {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid;
+  }
+
+  .ht-red { background: #fde8e8; color: #9b1a1a; border-color: #f5c6c6; }
+  .ht-orange { background: #fef0e0; color: #9b5a00; border-color: #fbd9a8; }
+  .ht-green { background: #e4f5e8; color: #1a6b2f; border-color: #b8e0c0; }
+  .ht-purple { background: #f0e8f8; color: #5a1a8b; border-color: #d4b8f0; }
+  .ht-blue { background: #e8f0f8; color: #1a3d6b; border-color: #b8ccf0; }
+  .ht-gray { background: #f0f0f0; color: #4a4a4a; border-color: #d0d0d0; }
+
+  /* Mini grid for symptoms */
+  .symptom-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 16px 0;
+  }
+
+  .symptom-col h4 {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .symptom-col ul {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .symptom-col li { margin-bottom: 7px; }
+
+  .h4-norm { color: var(--phase3); }
+  .h4-watch { color: var(--phase1); }
+
+  /* Support grid */
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .support-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 18px 20px;
+    font-size: 15px;
+  }
+
+  .support-card .icon { font-size: 22px; margin-bottom: 8px; display: block; }
+  .support-card strong { display: block; margin-bottom: 5px; font-size: 15px; }
+  .support-card p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.55; }
+
+  /* Card */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 22px 26px;
+    margin: 28px 0;
+  }
+
+  .card-title {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .card p { margin-bottom: 10px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* Blockquote */
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 16px 24px;
+    margin: 32px 0;
+    background: var(--highlight);
+    border-radius: 0 4px 4px 0;
+  }
+
+  blockquote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  blockquote cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: normal;
+    font-family: 'Jost', sans-serif;
+  }
+
+  /* Research */
+  .research {
+    background: var(--highlight);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin: 22px 0;
+    font-size: 15px;
+  }
+
+  .research-tag {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* Highlight */
+  .highlight-box {
+    background: var(--accent);
+    color: white;
+    padding: 26px 30px;
+    border-radius: 5px;
+    margin: 36px 0;
+  }
+
+  .highlight-box p { color: white; font-size: 16px; margin-bottom: 10px; }
+  .highlight-box p:last-child { margin-bottom: 0; }
+  .highlight-box strong { color: white; }
+
+  /* Data table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 15px;
+  }
+
+  .data-table th {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .data-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--highlight); }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .badge-ok { background: #d4edda; color: #1a5c2a; }
+  .badge-warn { background: #fff3cd; color: #7a5c00; }
+  .badge-bad { background: #fde8e4; color: #9c2012; }
+
+  /* Divider */
+  .divider {
+    text-align: center;
+    margin: 52px 0;
+    color: var(--muted);
+    font-size: 22px;
+    letter-spacing: 0.3em;
+  }
+
+  /* Conclusion */
+  .conclusion {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 36px 40px;
+    margin: 48px 0 0;
+  }
+
+  .conclusion h2 { margin-top: 0; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
+    text-align: center;
+  }
+
+  footer p { font-size: 13px; color: var(--muted); }
+
+  @media (max-width: 600px) {
+    .cycle-visual { grid-template-columns: repeat(2, 1fr); }
+    .symptom-cols { grid-template-columns: 1fr; }
+    .support-grid { grid-template-columns: 1fr 1fr; }
+    .phase-block { padding: 24px 20px; }
+    .conclusion { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header>
+  <div class="header-inner">
+    <span class="logo">Цикл — ресерч</span>
+    <span class="read-time">⏱ ~22 хв читання</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-tag">Жіноче здоров'я · Гормони · Самопідтримка</div>
+    <h1>Менструальний цикл: що відбувається всередині і як себе підтримати</h1>
+    <p class="hero-sub">Повний розбір чотирьох фаз — гормони, стан тіла, настрій, норма і тривожні сигнали. Плюс конкретні стратегії підтримки на кожній фазі, щоб цикл був максимально плавним.</p>
+
+    <div class="cycle-visual">
+      <div class="phase-pill ph1">
+        <div class="days">День 1–5</div>
+        <div class="name">Менструальна</div>
+      </div>
+      <div class="phase-pill ph2">
+        <div class="days">День 6–13</div>
+        <div class="name">Фолікулярна</div>
+      </div>
+      <div class="phase-pill ph3">
+        <div class="days">День 14</div>
+        <div class="name">Овуляція</div>
+      </div>
+      <div class="phase-pill ph4">
+        <div class="days">День 15–28</div>
+        <div class="name">Лютеїнова</div>
+      </div>
+    </div>
+    <p style="font-size:13px; color: var(--muted);">* Дні вказані для середньостатистичного 28-денного циклу. Реальний цикл може тривати 21–35 днів — це норма.</p>
+  </div>
+
+  <article>
+
+    <!-- INTRO -->
+    <span class="section-label">Вступ</span>
+    <h2>Цикл — це не просто менструація</h2>
+
+    <p>Більшість жінок знають про свій цикл одне: коли прийдуть місячні. Все що між ними — чорна скриня. А між тим, протягом місяця тіло проходить через чотири принципово різних гормональних стани, кожен з яких впливає на енергію, когніції, апетит, емоції, фізичні можливості і навіть на те, як сприймається стрес.</p>
+
+    <p>Незнання цих патернів означає, що жінка живе в режимі реакції — дивується чому в один тиждень вона продуктивна і соціальна, а через десять днів хоче тишу і солодке і не розуміє що з нею не так.</p>
+
+    <blockquote>
+      <p>«З нею все так. Просто ніхто не пояснив як влаштований її власний організм.»</p>
+    </blockquote>
+
+    <p>Ціль цього ресерчу — дати карту. Не щоб підкорятись циклу, а щоб перестати з ним боротись.</p>
+
+    <div class="card">
+      <div class="card-title">📌 Базові поняття</div>
+      <p><strong>Цикл рахується від першого дня менструації</strong> до першого дня наступної. Нормальна тривалість — 21–35 днів. Регулярність важливіша за конкретну цифру.</p>
+      <p><strong>Чотири фази:</strong> менструальна → фолікулярна → овуляція → лютеїнова. Перші дві — перша половина циклу (естроген домінує). Останні дві — друга половина (прогестерон домінує).</p>
+      <p><strong>Головні гравці:</strong> ФСГ (фолікулостимулюючий гормон), ЛГ (лютеїнізуючий гормон), естроген (естрадіол), прогестерон, тестостерон. Кожен має свій піковий момент.</p>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <!-- PHASE 1 -->
+    <span class="section-label">Фаза 1</span>
+
+    <div class="phase-block menstrual">
+      <div class="phase-header">
+        <span class="phase-name" style="color: var(--phase1);">Менструальна фаза</span>
+        <span class="phase-days">День 1–5 (у середньому)</span>
+      </div>
+
+      <div class="hormone-row">
+        <span class="hormone-tag ht-gray">Естроген ↓ низький</span>
+        <span class="hormone-tag ht-gray">Прогестерон ↓ низький</span>
+        <span class="hormone-tag ht-gray">Тестостерон ↓ низький</span>
+        <span class="hormone-tag ht-red">ПГ (простагландини) ↑ високі</span>
+      </div>
+
+      <h3>Що відбувається в тілі</h3>
+      <p>Якщо запліднення не відбулось, рівень прогестерону і естрогену різко падає. Це сигнал для матки: слизова оболонка (ендометрій), яку будували протягом місяця, більше не потрібна. Вона відшаровується і виходить разом з кров'ю.</p>
+      <p>Матка скорочується за допомогою <strong>простагландинів</strong> — гормоноподібних речовин. Саме вони викликають болі. Чим вищий рівень простагландинів — тим сильніші спазми. Паралельно низький рівень всіх основних гормонів дає відчуття виснаження і бажання інтроверсії.</p>
+
+      <h3>Як себе почуває</h3>
+      <div class="symptom-cols">
+        <div class="symptom-col">
+          <h4 class="h4-norm">Норма</h4>
+          <ul>
+            <li>Тягнучий або спазмоподібний біль унизу живота (1–3 дні)</li>
+            <li>Втома, знижена енергія</li>
+            <li>Бажання усамітнення, знижена соціальність</li>
+            <li>Зниження концентрації</li>
+            <li>Невеликий набряк, чутливість грудей</li>
+            <li>Зміна апетиту (тяга до теплого, солодкого)</li>
+            <li>Виділення від яскраво-червоних до темно-коричневих</li>
+          </ul>
+        </div>
+        <div class="symptom-col">
+          <h4 class="h4-watch">Сигнали тривоги</h4>
+          <ul>
+            <li>Біль, що не знімається ібупрофеном і порушує звичайне життя</li>
+            <li>Виділення більше 80 мл за цикл (міняєш прокладку щогодини або частіше)</li>
+            <li>Цикл коротший 21 або довший 35 днів</li>
+            <li>Кров'яні згустки більше 2–3 см</li>
+            <li>Кровотеча між циклами</li>
+            <li>Повна відсутність менструації більше 3 місяців (якщо не вагітна)</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Як підтримати себе</h3>
+      <div class="support-grid">
+        <div class="support-card">
+          <span class="icon">🛁</span>
+          <strong>Тепло і відпочинок</strong>
+          <p>Грілка на живіт знижує спазми — тепло розслаблює м'язи матки. Дозволь собі уповільнитись.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">💊</span>
+          <strong>НПЗП якщо потрібно</strong>
+          <p>Ібупрофен блокує простагландини — краще прийняти при перших симптомах, а не чекати сильного болю.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🥩</span>
+          <strong>Залізо і білок</strong>
+          <p>Тіло втрачає залізо. Найкращий момент для акцентування на залізовмісній їжі та добавках.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🧘</span>
+          <strong>Легкий рух</strong>
+          <p>Йога, розтяжка, прогулянки — покращують кровообіг і знижують спазми. Інтенсивні тренування — пауза.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🫖</span>
+          <strong>Протизапальне харчування</strong>
+          <p>Імбир, куркума, омега-3 знижують рівень простагландинів. Менше цукру і алкоголю — вони посилюють запалення.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">📔</span>
+          <strong>Рефлексія</strong>
+          <p>Низькі гормони дають ясність і схильність до аналізу. Хороший час для щоденника, підведення підсумків.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <span class="section-label">Фаза 2</span>
+
+    <div class="phase-block follicular">
+      <div class="phase-header">
+        <span class="phase-name" style="color: var(--phase2);">Фолікулярна фаза</span>
+        <span class="phase-days">День 6–13</span>
+      </div>
+
+      <div class="hormone-row">
+        <span class="hormone-tag ht-orange">ФСГ ↑ зростає</span>
+        <span class="hormone-tag ht-orange">Естроген ↑ зростає</span>
+        <span class="hormone-tag ht-gray">Прогестерон ↓ низький</span>
+        <span class="hormone-tag ht-orange">Тестостерон ↑ починає рости</span>
+      </div>
+
+      <h3>Що відбувається в тілі</h3>
+      <p>Гіпофіз починає виробляти ФСГ (фолікулостимулюючий гормон), який стимулює яєчник дозрівати кілька фолікулів. Один з них стає домінантним і починає активно виробляти <strong>естрадіол</strong> (основна форма естрогену). Рівень естрогену поступово і впевнено зростає — і з ним зростає все решта.</p>
+      <p>Паралельно ендометрій відновлюється і потовщується. Слизові виділення стають більш рідкими — тіло починає готуватись до овуляції.</p>
+
+      <h3>Як себе почуває</h3>
+      <div class="symptom-cols">
+        <div class="symptom-col">
+          <h4 class="h4-norm">Норма</h4>
+          <ul>
+            <li>Зростання енергії — відчуття "перезавантаження"</li>
+            <li>Покращення настрою, оптимізм</li>
+            <li>Гострість думки, краща концентрація</li>
+            <li>Підвищена соціальність, комунікабельність</li>
+            <li>Покращення якості шкіри (естроген стимулює колаген)</li>
+            <li>Зростання лібідо до кінця фази</li>
+            <li>Легші тренування, краща витривалість</li>
+          </ul>
+        </div>
+        <div class="symptom-col">
+          <h4 class="h4-watch">Сигнали тривоги</h4>
+          <ul>
+            <li>Відсутність будь-якого покращення стану після менструації</li>
+            <li>Виражений акне в цей період (може вказувати на андрогенний дисбаланс)</li>
+            <li>Постійно мізерні виділення (може вказувати на низький естроген)</li>
+            <li>Цикл, що застрягає на фолікулярній фазі занадто довго (&gt;20 днів до овуляції)</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Як підтримати себе</h3>
+      <div class="support-grid">
+        <div class="support-card">
+          <span class="icon">🏋️</span>
+          <strong>Інтенсивні тренування</strong>
+          <p>Естроген підвищує витривалість і знижує біль. Найкращий час для силових, кардіо, нових фізичних викликів.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🧠</span>
+          <strong>Складні задачі</strong>
+          <p>Когніції на піку. Плануй важливі зустрічі, презентації, навчання, творчі проекти на цей період.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🥦</span>
+          <strong>Клітковина і хрестоцвіті</strong>
+          <p>Броколі, цвітна капуста, брюссельська капуста — підтримують метаболізм естрогену в печінці.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🌱</span>
+          <strong>Ферментовані продукти</strong>
+          <p>Мікробіом кишківника регулює рівні естрогену. Кефір, йогурт, квашена капуста — в допомогу.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">👥</span>
+          <strong>Соціальна активність</strong>
+          <p>Тіло буквально налаштоване на контакт. Час для нетворкінгу, нових знайомств, командних проектів.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🎨</span>
+          <strong>Нові ідеї</strong>
+          <p>Дофамін і естроген разом дають відкритість до нового. Починай проекти, браinstorm, вивчай щось незнайоме.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <span class="section-label">Фаза 3</span>
+
+    <div class="phase-block ovulation">
+      <div class="phase-header">
+        <span class="phase-name" style="color: var(--phase3);">Овуляція</span>
+        <span class="phase-days">День 14 (±2 дні)</span>
+      </div>
+
+      <div class="hormone-row">
+        <span class="hormone-tag ht-green">Естроген ↑↑ пік</span>
+        <span class="hormone-tag ht-green">ЛГ ↑↑ різкий пік</span>
+        <span class="hormone-tag ht-green">ФСГ ↑ пік</span>
+        <span class="hormone-tag ht-green">Тестостерон ↑ пік</span>
+      </div>
+
+      <h3>Що відбувається в тілі</h3>
+      <p>Різкий стрибок ЛГ (лютеїнізуючого гормону) — тригер овуляції. Домінантний фолікул лопається і вивільняє яйцеклітину, яка потрапляє у маткову трубу. Вікно фертильності — 12–24 години для яйцеклітини, але сперматозоїди живуть до 5 днів, тому фертильне вікно фактично 5–6 днів.</p>
+      <p>Рівні естрогену і тестостерону досягають абсолютного піку. Тіло в буквальному сенсі налаштоване на максимальну привабливість і активність — еволюційна логіка.</p>
+
+      <h3>Як себе почуває</h3>
+      <div class="symptom-cols">
+        <div class="symptom-col">
+          <h4 class="h4-norm">Норма</h4>
+          <ul>
+            <li>Пік енергії і впевненості</li>
+            <li>Тягнучий біль з одного боку живота (мітельшмерц) — 1–2 дні</li>
+            <li>Прозорі слизові виділення — "сирий білок яйця"</li>
+            <li>Легке підвищення базальної температури після овуляції (+0.2°С)</li>
+            <li>Максимальне лібідо</li>
+            <li>Голос стає трохи вищим (задокументовано дослідженнями)</li>
+          </ul>
+        </div>
+        <div class="symptom-col">
+          <h4 class="h4-watch">Сигнали тривоги</h4>
+          <ul>
+            <li>Відсутність ознак овуляції (виділень, зміни температури) — ановуляторний цикл</li>
+            <li>Дуже сильний біль при овуляції (може бути ендометріоз, кіста)</li>
+            <li>Кровотеча в середині циклу (не плутати з мізерними виділення-плямами — це норма)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="research">
+        <div class="research-tag">🔬 Дослідження</div>
+        <p>Дослідження Haselton & Gangestad (2006, <em>Evolution and Human Behavior</em>) показало, що в дні овуляції жінки об'єктивно оцінюються оточуючими як більш привабливі, більше часу приділяють зовнішності і демонструють більш впевнену мову тіла. Це не суб'єктивне відчуття — це вимірювані поведінкові зміни під впливом гормонального піку.</p>
+      </div>
+
+      <h3>Як підтримати себе</h3>
+      <div class="support-grid">
+        <div class="support-card">
+          <span class="icon">🎤</span>
+          <strong>Публічні виступи</strong>
+          <p>Пік харизми і впевненості. Найкращий час для переговорів, захистів, важливих розмов.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🏃</span>
+          <strong>Спорт на максимум</strong>
+          <p>Тестостерон і естроген разом дають найвищу фізичну продуктивність. Встанови особисті рекорди.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🌿</span>
+          <strong>Цинк і антиоксиданти</strong>
+          <p>Підтримують здоров'я яйцеклітини і функцію жовтого тіла. Насіння гарбуза, морепродукти, горіхи.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🤝</span>
+          <strong>Зв'язки і партнерство</strong>
+          <p>Природна відкритість і харизма — час зміцнювати відносини, робити важливі пропозиції.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <span class="section-label">Фаза 4</span>
+
+    <div class="phase-block luteal">
+      <div class="phase-header">
+        <span class="phase-name" style="color: var(--phase4);">Лютеїнова фаза</span>
+        <span class="phase-days">День 15–28</span>
+      </div>
+
+      <div class="hormone-row">
+        <span class="hormone-tag ht-purple">Прогестерон ↑↑ домінує</span>
+        <span class="hormone-tag ht-purple">Естроген ↑ другий пік → ↓ падає</span>
+        <span class="hormone-tag ht-gray">Тестостерон ↓ знижується</span>
+        <span class="hormone-tag ht-gray">ЛГ, ФСГ ↓ низькі</span>
+      </div>
+
+      <h3>Що відбувається в тілі</h3>
+      <p>Після овуляції лопнутий фолікул перетворюється на <strong>жовте тіло</strong> — тимчасову залозу, яка активно виробляє прогестерон. Його задача: підготувати ендометрій до імплантації, підвищити температуру тіла, заспокоїти імунну систему щоб вона не відкинула потенційний ембріон.</p>
+      <p>Якщо вагітності немає — жовте тіло деградує на 10–12 день після овуляції, прогестерон і естроген падають → починається менструація. Цей перехід і є причиною ПМС.</p>
+      <p>Лютеїнова фаза ділиться на два підперіоди: рання (відносно стабільна, прогестерон на піку) і пізня (гормони падають, з'являються симптоми ПМС).</p>
+
+      <h3>Як себе почуває</h3>
+      <div class="symptom-cols">
+        <div class="symptom-col">
+          <h4 class="h4-norm">Норма</h4>
+          <ul>
+            <li>Зниження енергії у другій половині фази</li>
+            <li>Підвищений апетит (особливо на вуглеводи)</li>
+            <li>Легке здуття, затримка рідини</li>
+            <li>Чутливість грудей</li>
+            <li>Легка дратівливість або сентиментальність</li>
+            <li>Потяг до усамітнення</li>
+            <li>Базальна температура підвищена на 0.2–0.5°С</li>
+            <li>Виділення стають густішими або відсутні</li>
+          </ul>
+        </div>
+        <div class="symptom-col">
+          <h4 class="h4-watch">Сигнали тривоги</h4>
+          <ul>
+            <li>ПМДР — важкий ПМС: виражена депресія, тривога, агресія, що унеможливлюють нормальне життя 5–7+ днів</li>
+            <li>Панічні атаки перед менструацією (прогестерон впливає на ГАМК-рецептори)</li>
+            <li>Набряк 2+ кг, що не зникає після менструації</li>
+            <li>Дуже коротка лютеїнова фаза (&lt;10 днів) — може вказувати на недостатність жовтого тіла</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Як підтримати себе</h3>
+      <div class="support-grid">
+        <div class="support-card">
+          <span class="icon">🍫</span>
+          <strong>Складні вуглеводи</strong>
+          <p>Тяга до солодкого — реальна: серотонін знижується. Вівсянка, батат, бобові стабілізують цукор і підтримують серотонін.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">💤</span>
+          <strong>Сон як пріоритет</strong>
+          <p>Прогестерон має снодійний ефект, але якість сну може погіршитись. Ранній відбій, без екранів за годину до сну.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🧂</span>
+          <strong>Менше солі</strong>
+          <p>Сіль посилює затримку рідини і здуття. Особливо в останні 5–7 днів.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">🏊</span>
+          <strong>Помірний рух</strong>
+          <p>Плавання, йога, пілатес — краще за HIIT. Тіло відновлюється повільніше, перенавантаження підвищує кортизол.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">Mg</span>
+          <strong>Магній</strong>
+          <p>Клінічно знижує симптоми ПМС: дратівливість, болі, набряк. 300–400 мг гліцинату магнію у другій половині циклу.</p>
+        </div>
+        <div class="support-card">
+          <span class="icon">📋</span>
+          <strong>Детальна робота</strong>
+          <p>Прогестерон дає увагу до деталей і обережність. Хороший час для редагування, аналізу, завершення проектів.</p>
+        </div>
+      </div>
+
+      <div class="research">
+        <div class="research-tag">🔬 Дослідження: магній і ПМС</div>
+        <p>Мета-аналіз Facchinetti et al. і подальші дослідження (<em>Obstetrics & Gynecology</em>, <em>Magnesium Research</em>) показують, що прийом магнію 200–400 мг/добу у другій половині циклу протягом 2–3 місяців знижує інтенсивність симптомів ПМС — дратівливість, набряк, болі — у 70–80% жінок.</p>
+      </div>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <!-- HORMONES DEEP DIVE -->
+    <span class="section-label">Гормони детально</span>
+    <h2>Що робить кожен гормон і чому це важливо</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Гормон</th>
+          <th>Основний ефект</th>
+          <th>Піковий момент</th>
+          <th>При дефіциті</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Естрадіол (Е2)</strong></td>
+          <td>Енергія, настрій, когніції, лібідо, шкіра, кістки</td>
+          <td>Кінець фолікулярної / овуляція</td>
+          <td>Втома, сухість, когнітивний туман, депресія</td>
+        </tr>
+        <tr>
+          <td><strong>Прогестерон</strong></td>
+          <td>Заспокоєння, сон, підготовка до вагітності, термогенез</td>
+          <td>Середина лютеїнової</td>
+          <td>Тривога, безсоння, важкий ПМС, короткий цикл</td>
+        </tr>
+        <tr>
+          <td><strong>Тестостерон</strong></td>
+          <td>Лібідо, сила, мотивація, впевненість</td>
+          <td>Овуляція</td>
+          <td>Відсутність лібідо, апатія, м'язова слабкість</td>
+        </tr>
+        <tr>
+          <td><strong>ФСГ</strong></td>
+          <td>Стимулює ріст фолікулів</td>
+          <td>Початок фолікулярної</td>
+          <td>Відсутність овуляції, порушення циклу</td>
+        </tr>
+        <tr>
+          <td><strong>ЛГ</strong></td>
+          <td>Тригер овуляції</td>
+          <td>Перед овуляцією (пік)</td>
+          <td>Ановуляторні цикли</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="divider">· · ·</div>
+
+    <!-- PMS vs PMDD -->
+    <span class="section-label">ПМС і ПМДР</span>
+    <h2>Де закінчується норма і починається розлад</h2>
+
+    <p>ПМС (передменструальний синдром) — це спектр. Легкі симптоми другої половини циклу є у більшості жінок і є нормою. Але є межа, за якою починається патологія.</p>
+
+    <div class="card">
+      <div class="card-title">ПМС — норма (з підтримкою)</div>
+      <p>Симптоми з'являються за 5–7 днів до менструації, зникають після початку або на 2–3 день. Дискомфорт присутній, але не заважає щоденному функціонуванню. Охоплює 70–80% жінок в різному ступені.</p>
+    </div>
+
+    <div class="card" style="border-left-color: var(--phase1);">
+      <div class="card-title" style="color: var(--phase1);">ПМДР — потребує уваги лікаря</div>
+      <p><strong>Передменструальний дисфоричний розлад</strong> — важка форма, що торкається 3–8% жінок. Ознаки: виражена депресія або тривога, яка щомісяця з'являється за 1–2 тижні до менструації і суттєво порушує роботу, відносини, повсякденне життя. Це не "просто ПМС" і не слабкість — це нейробіологічний розлад, пов'язаний з аномальною чутливістю мозку до нормальних гормональних коливань. Лікується — зверніться до гінеколога або психіатра.</p>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <!-- NUTRITION -->
+    <span class="section-label">Харчування і нутрієнти</span>
+    <h2>Що підтримує цикл зсередини</h2>
+
+    <p>Немає одного "правильного харчування для циклу" — але є нутрієнти, дефіцит яких системно порушує гормональний баланс.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Нутрієнт</th>
+          <th>Роль у циклі</th>
+          <th>Джерела / добавки</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Залізо</strong></td>
+          <td>Компенсація втрат при менструації, енергія, когніції</td>
+          <td>Червоне м'ясо, печінка; бісгліцинат заліза</td>
+        </tr>
+        <tr>
+          <td><strong>Магній</strong></td>
+          <td>Знижує ПМС, спазми, дратівливість; регулює кортизол</td>
+          <td>Горіхи, бобові, шоколад; гліцинат магнію 300–400 мг</td>
+        </tr>
+        <tr>
+          <td><strong>Вітамін B6</strong></td>
+          <td>Синтез серотоніну і дофаміну; знижує симптоми ПМС</td>
+          <td>Банани, нут, лосось; 25–50 мг/добу</td>
+        </tr>
+        <tr>
+          <td><strong>Омега-3</strong></td>
+          <td>Знижує рівень простагландинів → менший біль при менструації</td>
+          <td>Жирна риба; риб'ячий жир 1–2 г EPA+DHA/добу</td>
+        </tr>
+        <tr>
+          <td><strong>Вітамін D</strong></td>
+          <td>Регулює ФСГ і ЛГ; дефіцит пов'язаний з нерегулярним циклом і СПКЯ</td>
+          <td>Сонце; D3 1000–2000 МО/добу (перевіряти рівень)</td>
+        </tr>
+        <tr>
+          <td><strong>Цинк</strong></td>
+          <td>Підтримує овуляцію, знижує акне, регулює андрогени</td>
+          <td>Насіння гарбуза, морепродукти; 15–25 мг/добу</td>
+        </tr>
+        <tr>
+          <td><strong>Інозитол (міо-)</strong></td>
+          <td>Особливо при СПКЯ: покращує чутливість до інсуліну і регулярність циклу</td>
+          <td>Добавки міо-інозитол 2–4 г/добу</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="research">
+      <div class="research-tag">🔬 Дослідження: омега-3 і дисменорея</div>
+      <p>Дослідження Harel et al. (<em>American Journal of Obstetrics and Gynecology</em>, 1996) та подальші мета-аналізи показали: прийом омега-3 жирних кислот (EPA+DHA) достовірно знижує інтенсивність менструального болю — в середньому на 30–40% — через пригнічення синтезу простагландину PGE2. Ефект накопичувальний — помітний через 2–3 місяці прийому.</p>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <!-- TRACKING -->
+    <span class="section-label">Відстеження</span>
+    <h2>Як відслідковувати свій цикл і навіщо</h2>
+
+    <p>Без відстеження всі патерни лишаються невидимими. Ти реагуєш на стани, не розуміючи їх причини. Відстеження перетворює хаос в передбачуваність.</p>
+
+    <p><strong>Мінімум що варто фіксувати щодня:</strong></p>
+    <ul>
+      <li>День циклу</li>
+      <li>Рівень енергії (1–5)</li>
+      <li>Настрій (1–5 або коротко)</li>
+      <li>Наявність і характер болю</li>
+      <li>Характер виділень (колір, консистенція)</li>
+      <li>Якість сну</li>
+    </ul>
+
+    <p><strong>Додатково (для глибшого розуміння):</strong></p>
+    <ul>
+      <li><strong>Базальна температура (БТТ)</strong> — вимірювати щоранку до підйому. Після овуляції температура підвищується на 0.2–0.5°С і залишається вищою до кінця циклу. Підтверджує факт овуляції.</li>
+      <li><strong>Характер виділень</strong> — найнадійніший безкоштовний індикатор фертильного вікна. "Яєчний білок" = наближення овуляції.</li>
+      <li><strong>Тести на овуляцію (ЛГ-тести)</strong> — виявляють пік ЛГ за 12–36 годин до овуляції.</li>
+    </ul>
+
+    <div class="card">
+      <div class="card-title">📱 Додатки для відстеження</div>
+      <p><strong>Clue</strong> — найбільш науково верифікований (без алгоритмів "природного планування", базується на введених даних). Безкоштовний базовий функціонал.</p>
+      <p><strong>Natural Cycles</strong> — сертифікований медичний пристрій, враховує БТТ. Платний.</p>
+      <p><strong>Flo</strong> — популярний, але алгоритми передбачення критикувались за неточність. Більше для базового трекінгу.</p>
+      <p><strong>Таблиця в Notion/Obsidian</strong> — якщо хочеш повний контроль над власними даними без хмарних алгоритмів.</p>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <!-- STRESS & CYCLE -->
+    <span class="section-label">Стрес і цикл</span>
+    <h2>Чому стрес "краде" цикл</h2>
+
+    <p>Це один з найважливіших і найменш обговорюваних зв'язків. Гіпоталамус — центр управління циклом — одночасно є центром стресової відповіді. Коли кортизол хронічно підвищений, він буквально пригнічує вісь гіпоталамус–гіпофіз–яєчники.</p>
+
+    <p>Механізм простий: у стані хронічного стресу мозок вирішує що <strong>зараз не час розмножуватись</strong>. Він знижує ФСГ і ЛГ → овуляція затримується або не відбувається → цикл подовжується або стає нерегулярним.</p>
+
+    <div class="highlight-box">
+      <p><strong>Практичний прояв:</strong> після сильного стресу (іспити, переїзд, втрата, інтенсивний марафон) менструація може затриматись на 1–2 тижні або зникнути на кілька місяців. Це не патологія яєчників — це нейроендокринна реакція.</p>
+      <p>Якщо цикл став нерегулярним — перш ніж шукати "гормональний розлад" запитай себе: що змінилось у рівні стресу, сні, калорійності харчування або інтенсивності тренувань за останні 1–3 місяці?</p>
+    </div>
+
+    <div class="divider">· · ·</div>
+
+    <!-- CONCLUSION -->
+    <div class="conclusion">
+      <span class="section-label" style="margin-top:0">Підсумок</span>
+      <h2>Карта замість хаосу</h2>
+
+      <p>Менструальний цикл — це не щомісячна незручність. Це складна гормональна симфонія, де кожна фаза дає різні ресурси і різні потреби. Коли знаєш патерн — перестаєш себе судити за "неправильний" стан і починаєш працювати з тілом, а не проти нього.</p>
+
+      <p><strong>Головне що варто зробити:</strong></p>
+      <ol>
+        <li>Почати відслідковувати цикл — хоча б день і рівень енергії/настрою протягом 2–3 місяців. Патерни стануть видимими.</li>
+        <li>Перевірити базові нутрієнти: феритин, вітамін D, магній. Дефіцит будь-якого з них системно порушує цикл.</li>
+        <li>У другій половині циклу — магній (300–400 мг гліцинату), омега-3, менше кофеїну і алкоголю.</li>
+        <li>Якщо ПМС важкий і повторюється — не терпіти, а звернутись до гінеколога. ПМДР лікується.</li>
+        <li>При нерегулярному циклі — насамперед перевірити рівень стресу, сон і калорійність. Часто причина там.</li>
+      </ol>
+
+      <p style="margin-top: 20px; color: var(--muted); font-size: 14px;">⚠️ Це науково-просвітницький матеріал. При виражених симптомах або порушеннях циклу — консультація гінеколога обов'язкова.</p>
+    </div>
+
+    <!-- REFERENCES -->
+    <span class="section-label" style="margin-top: 56px;">Використані джерела</span>
+    <h2>Ключові дослідження</h2>
+    <ul style="font-size: 14px; color: var(--muted); line-height: 1.9;">
+      <li>Bäckström T et al. Allopregnanolone and mood disorders. <em>Progress in Neurobiology</em>. 2014.</li>
+      <li>Facchinetti F et al. Magnesium prophylaxis of premenstrual syndrome. <em>Obstet Gynecol</em>. 1991.</li>
+      <li>Harel Z et al. Supplementation with omega-3 polyunsaturated fatty acids in the management of dysmenorrhea. <em>Am J Obstet Gynecol</em>. 1996.</li>
+      <li>Haselton MG, Gangestad SW. Conditional expression of women's desires and male mate retention efforts. <em>Evol Hum Behav</em>. 2006.</li>
+      <li>Johnson SR. Premenstrual syndrome, premenstrual dysphoric disorder, and beyond. <em>Obstet Gynecol</em>. 2004.</li>
+      <li>Lawson EA et al. Hypothalamic dysfunction in anorexia nervosa. <em>J Clin Endocrinol Metab</em>. 2011.</li>
+      <li>Prior JC. Progesterone as a bone-trophic hormone. <em>Endocr Rev</em>. 1990.</li>
+      <li>Sundström Poromaa I, Comasco E. Neurobiological mechanisms underlying premenstrual dysphoric disorder. <em>J Neuroendocrinol</em>. 2015.</li>
+      <li>Wyatt KM et al. Efficacy of vitamin B6 in the treatment of premenstrual syndrome. <em>BMJ</em>. 1999.</li>
+      <li>Zheng H et al. Estrogen, cognition and a woman's risk of Alzheimer's disease. <em>Am J Epidemiol</em>. 2018.</li>
+    </ul>
+
+  </article>
+</div>
+
+<footer>
+  <div class="container">
+    <p>Не є медичною рекомендацією. Консультуйтесь з лікарем.</p>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (window.scrollY / docH) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+  });
+</script>
+</body>
+</html>
